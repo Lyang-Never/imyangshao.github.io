@@ -274,6 +274,7 @@
 <ul>
 <li><a href="#车牌预处理-即handling-img-函数">车牌预处理（即Handling(img) 函数）</a></li>
 <li><a href="#车牌定位-即getlicense-img-函数">车牌定位（即GetLicense(img)函数）</a></li>
+<li><a href="#车牌号的识别-identify-img-函数">车牌号的识别（Identify(img)函数）</a></li>
 </ul></li>
 <li><a href="#四-特色与创新">四、“特色与创新”</a></li>
 <li><a href="#五-附源码">五、附源码</a></li>
@@ -344,44 +345,51 @@ return regions
 
 <p>大致思路：</p>
 
-<blockquote>
-<p>根据contours信息，构建外界矩形，并判断该轮廓是否合理。因为车牌是规则的矩形，有其长宽的信息，可根据构建的矩形的长宽与设定的进行对比，若满足则将其保留，否则剔除。 即车牌长宽比识别车牌定位。
-+ ## 车牌号的识别（Identify(img)函数）</p>
+<pre><code>根据contours信息，构建外界矩形，并判断该轮廓是否合理。因为车牌是规则的矩形，有其长宽的信息，可根据构建的
+矩形的长宽与设定的进行对比，若满足则将其保留，否则剔除。 即车牌长宽比识别车牌定位。
+</code></pre>
+
+<ul>
+<li><h2 id="车牌号的识别-identify-img-函数">车牌号的识别（Identify(img)函数）</h2>
 
 <pre><code>def Identify(img):
-    # 灰度化
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    prc = Handling(gray)
-    regions = GetLicense(prc)
-    for box in regions:
-        #将车牌标记
-        cv2.drawContours(img, [box], 0, (0, 255, 0), 2)
-        cv2.imshow(&quot;Result1&quot;,img)
+# 灰度化
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+prc = Handling(gray)
+regions = GetLicense(prc)
+for box in regions:
+    #将车牌标记
+    cv2.drawContours(img, [box], 0, (0, 255, 0), 2)
+    cv2.imshow(&quot;Result1&quot;,img)
 
-        #仿射变换，将车牌截剪出来
-        pts1 = np.float32([[box[0][0],box[0][1]], [box[1][0],box[1][1]], [box[2][0],box[2][1]],[box[3][0],box[3][1]]])
-        pts2 = np.float32([[200, 120], [0, 120], [0, 0], [200, 0]])
-        M = cv2.getPerspectiveTransform(pts1, pts2)
-        dst = cv2.warpPerspective(img, M, (200, 120))
-        gray1=cv2.cvtColor(dst,cv2.COLOR_BGRA2GRAY)
+    #仿射变换，将车牌截剪出来
+    pts1 = np.float32([[box[0][0],box[0][1]], [box[1][0],box[1][1]], [box[2][0],box[2][1]],[box[3][0],box[3][1]]])
+    pts2 = np.float32([[200, 120], [0, 120], [0, 0], [200, 0]])
+    M = cv2.getPerspectiveTransform(pts1, pts2)
+    dst = cv2.warpPerspective(img, M, (200, 120))
+    gray1=cv2.cvtColor(dst,cv2.COLOR_BGRA2GRAY)
 
-        #OCR图像识别
-        cv2.imwrite(&quot;./Result2.png&quot;, gray1)
-        pytesseract.pytesseract.tesseract_cmd = 'C://Program Files (x86)/Tesseract-OCR/tesseract.exe'
-        text = pytesseract.image_to_string(Image.open('./Result2.png'))
-        print(text)
-        cv2.imshow(&quot;Result2&quot;, gray1)
+    #OCR图像识别
+    cv2.imwrite(&quot;./Result2.png&quot;, gray1)
+    pytesseract.pytesseract.tesseract_cmd = 'C://Program Files (x86)/Tesseract-OCR/tesseract.exe'
+    text = pytesseract.image_to_string(Image.open('./Result2.png'))
+    print(text)
+    cv2.imshow(&quot;Result2&quot;, gray1)
 
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-</code></pre>
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+</code></pre></li>
+</ul>
 
 <h1 id="四-特色与创新">四、“特色与创新”</h1>
 
-<p>本程序识别具有局限性，对识别车牌的图片非常局限~~~</p>
+<pre><code>本程序识别具有局限性，对识别车牌的图片非常局限~~~
 
-<p>网上一种方法是计算车牌的水平和垂直投影，峰谷分析进行分割，然后通过卷积神经网络训练样本对采集的各个数字字母进行匹配识别。由于对这一块知识的不熟悉，自己采用opencv的第三方库pytesseract,结合Tesseract-OCR引擎对所获的车牌的图片进行识别，虽然效果不是那么的好，但是对于较清晰的图片，还是可以识别出来的。同时。这也是自己实验需要改进和完善的地方。大家可以自行完善哈！</p>
-</blockquote>
+网上一种方法是计算车牌的水平和垂直投影，峰谷分析进行分割，然后通过卷积神经网络训练样本对采集的各个数字字母进
+行匹配识别。由于对这一块知识的不熟悉，自己采用opencv的第三方库pytesseract,结合Tesseract-OCR引擎对所获的车牌的
+图片进行识别，虽然效果不是那么的好，但是对于较清晰的图片，还是可以识别出来的。同时。这也是自己实验需要改进和
+完善的地方。大家可以自行完善哈！
+</code></pre>
 
 <h1 id="五-附源码">五、附源码</h1>
 
