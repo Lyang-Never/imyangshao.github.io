@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.58.3 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Lyang">
+<meta name="keywords" content="车牌识别">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简易车牌识别">
+<meta name="twitter:title" content="简易车牌识别">
+<meta property="og:url" content="https://imyangshao.github.io/2019/10/%E7%AE%80%E6%98%93%E8%BD%A6%E7%89%8C%E8%AF%86%E5%88%AB/">
+<meta property="twitter:url" content="https://imyangshao.github.io/2019/10/%E7%AE%80%E6%98%93%E8%BD%A6%E7%89%8C%E8%AF%86%E5%88%AB/">
+<meta property="og:site_name" content="Welcome To LyBlog!">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-10-04T10:46:30">
+  
+  
+    <meta property="article:modified_time" content="2019-10-04T10:46:30">
+  
+  
+  
+    
+      <meta property="article:section" content="学习整理">
+    
+      <meta property="article:section" content="简易车牌识别">
+    
+  
+  
+    
+      <meta property="article:tag" content="License">
+    
+      <meta property="article:tag" content="学习整理">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://imyangshao.github.io/images/car.jpg">
+  <meta property="twitter:image" content="https://imyangshao.github.io/images/car.jpg">
+
+
+  <meta property="og:image" content="https://imyangshao.github.io/images/pic.jpg">
+  <meta property="twitter:image" content="https://imyangshao.github.io/images/pic.jpg">
+
+
+
+
+  <meta property="og:image" content="https://imyangshao.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://imyangshao.github.io/images/touxiang.jpg">
+
+
+    <title>简易车牌识别</title>
+
+    <link rel="icon" href="images/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="https://imyangshao.github.io/2019/10/%E7%AE%80%E6%98%93%E8%BD%A6%E7%89%8C%E8%AF%86%E5%88%AB/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://imyangshao.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://imyangshao.github.io/">Welcome To LyBlog!</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://imyangshao.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://imyangshao.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://imyangshao.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://imyangshao.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">Lyang</h4>
+        
+          <h5 class="sidebar-profile-bio">Just do it!</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://imyangshao.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://imyangshao.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://imyangshao.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://imyangshao.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://imyangshao.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/imyangshao" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://imyangshao.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=233 height=100 src="//music.163.com/outchain/player?type=0&id=3013527850&auto=1&height=90"></iframe>
+  </div>
+
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/pic.jpg')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      简易车牌识别
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-04T10:46:30&#43;08:00">
+        
+  十月 4, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://imyangshao.github.io/categories/%e5%ad%a6%e4%b9%a0%e6%95%b4%e7%90%86">学习整理</a>, 
+    
+      <a class="category-link" href="https://imyangshao.github.io/categories/%e7%ae%80%e6%98%93%e8%bd%a6%e7%89%8c%e8%af%86%e5%88%ab">简易车牌识别</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">数字图像作业-简易车牌识别</span>
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#一-项目的简介">一、项目的简介</a></li>
+<li><a href="#二-安装与使用说明">二、安装与使用说明</a></li>
+<li><a href="#三-设计思路">三、设计思路</a>
+<ul>
+<li><a href="#车牌预处理-即handling-img-函数">车牌预处理（即Handling(img) 函数）</a></li>
+<li><a href="#车牌定位-即getlicense-img-函数">车牌定位（即GetLicense(img)函数）</a></li>
+<li><a href="#车牌号的识别-identify-img-函数">车牌号的识别（Identify(img)函数）</a></li>
+</ul></li>
+<li><a href="#四-特色与创新">四、“特色与创新”</a></li>
+<li><a href="#五-附源码">五、附源码</a></li>
+</ul>
+</nav>
+
+<h1 id="一-项目的简介">一、项目的简介</h1>
+
+<p>本次我的选题是车牌识别。一方面是因为当下车牌识别已经应用于生活的方方面面，对我们的生活质量有较大的改善和帮助；另一方面，当然就是对它的熟悉，因为在上课的时候，老师所讲案例就是车牌识别，当时所了解的知识理论知识，所以也正好趁这次大作业，来进行实践一下，可能做的不是那么的完善，功能也十分的简易，但是自己通过这个大作业，真正熟悉了车牌识别的整个流程，以及所用到的技术。
+同时，关于一些有所欠缺的地方（车牌的识别），自己随后去完善。</p>
+
+<h1 id="二-安装与使用说明">二、安装与使用说明</h1>
+
+<p>环境及相关的依赖库：
+    Python3.6、Pycharm、Numpy、Opencv、Pytesseract、PIL、Tesseract-OCR引擎、chi_sim.traindata字库</p>
+
+<h1 id="三-设计思路">三、设计思路</h1>
+
+<ul>
+<li><h2 id="车牌预处理-即handling-img-函数">车牌预处理（即Handling(img) 函数）</h2>
+
+<pre><code>def Process(img):
+# 高斯平滑
+gaussian = cv2.GaussianBlur(img, (3, 3), 0, 0, cv2.BORDER_DEFAULT)
+# 中值滤波
+median = cv2.medianBlur(gaussian, 5)
+# Sobel算子
+# 梯度方向: x
+sobel = cv2.Sobel(median, cv2.CV_8U, 1, 0, ksize=3)
+# 二值化
+ret, binary = cv2.threshold(sobel, 170, 255, cv2.THRESH_BINARY)
+# 核函数
+element1 = cv2.getStructuringElement(cv2.MORPH_RECT, (9, 1))
+element2 = cv2.getStructuringElement(cv2.MORPH_RECT, (9, 7))
+# 膨胀
+dilation = cv2.dilate(binary, element2, iterations=1)
+# 腐蚀
+erosion = cv2.erode(dilation, element1, iterations=1)
+# 膨胀
+dilation2 = cv2.dilate(erosion, element2, iterations=3)
+return dilation2
+</code></pre></li>
+
+<li><h2 id="车牌定位-即getlicense-img-函数">车牌定位（即GetLicense(img)函数）</h2>
+
+<pre><code>def GetRegion(img):
+regions = []
+# 查找轮廓
+_, contours, hierarchy = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+for contour in contours:
+    area = cv2.contourArea(contour)
+    if (area &lt; 2000):
+        continue
+    eps = 1e-3 * cv2.arcLength(contour, True)
+    approx = cv2.approxPolyDP(contour, eps, True)
+    rect = cv2.minAreaRect(contour)
+    box = cv2.boxPoints(rect)
+    box = np.int0(box)
+    height = abs(box[0][1] - box[2][1])
+    width = abs(box[0][0] - box[2][0])
+    ratio = float(width) / float(height)
+    if (ratio &lt; 5 and ratio &gt; 1.8):
+        regions.append(box)
+return regions
+
+</code></pre></li>
+</ul>
+
+<p>大致思路：</p>
+
+<pre><code>根据contours信息，构建外界矩形，并判断该轮廓是否合理。因为车牌是规则的矩形，有其长宽的信息，可根据构建的矩形的长宽与设定的进行对比，若满足则将其保留，否则剔除。 即车牌长宽比识别车牌定位。
+</code></pre>
+
+<ul>
+<li><h2 id="车牌号的识别-identify-img-函数">车牌号的识别（Identify(img)函数）</h2>
+
+<pre><code>def Identify(img):
+# 灰度化
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+prc = Handling(gray)
+regions = GetLicense(prc)
+for box in regions:
+    #将车牌标记
+    cv2.drawContours(img, [box], 0, (0, 255, 0), 2)
+    cv2.imshow(&quot;Result1&quot;,img)
+
+    #仿射变换，将车牌截剪出来
+    pts1 = np.float32([[box[0][0],box[0][1]], [box[1][0],box[1][1]], [box[2][0],box[2][1]],[box[3][0],box[3][1]]])
+    pts2 = np.float32([[200, 120], [0, 120], [0, 0], [200, 0]])
+    M = cv2.getPerspectiveTransform(pts1, pts2)
+    dst = cv2.warpPerspective(img, M, (200, 120))
+    gray1=cv2.cvtColor(dst,cv2.COLOR_BGRA2GRAY)
+
+    #OCR图像识别
+    cv2.imwrite(&quot;./Result2.png&quot;, gray1)
+    pytesseract.pytesseract.tesseract_cmd = 'C://Program Files (x86)/Tesseract-OCR/tesseract.exe'
+    text = pytesseract.image_to_string(Image.open('./Result2.png'))
+    print(text)
+    cv2.imshow(&quot;Result2&quot;, gray1)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+</code></pre></li>
+</ul>
+
+<h1 id="四-特色与创新">四、“特色与创新”</h1>
+
+<pre><code>本程序识别具有局限性，对识别车牌的图片非常局限~~~
+
+    网上一种方法是计算车牌的水平和垂直投影，峰谷分析进行分割，然后通过卷积神经网络训练样本对采集的各个数字字母进行匹配识别。由于对这一块知识的不熟悉，自己采用opencv的第三方库pytesseract,结合Tesseract-OCR引擎对所获的车牌的图片进行识别，虽然效果不是那么的好，但是对于较清晰的图片，还是可以识别出来的。同时。这也是自己实验需要改进和完善的地方。大家可以自行完善哈！
+</code></pre>
+
+<h1 id="五-附源码">五、附源码</h1>
+
+<pre><code># -*- coding: utf-8 -*-
+import cv2
+import numpy as np
+import pytesseract
+from PIL import Image
+
+
+# 形态学处理
+def Handling(img):
+    # 高斯平滑
+    gaussian = cv2.GaussianBlur(img, (3, 3), 0, 0, cv2.BORDER_DEFAULT)
+    # 中值滤波
+    median = cv2.medianBlur(gaussian, 5)
+    # Sobel算子
+    # 梯度方向: x
+    sobel = cv2.Sobel(median, cv2.CV_8U, 1, 0, ksize=3)
+    # 二值化
+    ret, binary = cv2.threshold(sobel, 170, 255, cv2.THRESH_BINARY)
+    # 核函数
+    element1 = cv2.getStructuringElement(cv2.MORPH_RECT, (9, 1))
+    element2 = cv2.getStructuringElement(cv2.MORPH_RECT, (9, 7))
+    # 膨胀
+    dilation = cv2.dilate(binary, element2, iterations=1)
+    # 腐蚀
+    erosion = cv2.erode(dilation, element1, iterations=1)
+    # 膨胀
+    dilation2 = cv2.dilate(erosion, element2, iterations=3)
+    return dilation2
+
+
+def GetLicense(img):
+    regions = []
+
+    # 查找轮廓
+    _, contours, hierarchy = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    for contour in contours:
+        area = cv2.contourArea(contour)
+        if (area &lt; 2000):
+            continue
+        eps = 1e-3 * cv2.arcLength(contour, True)
+        approx = cv2.approxPolyDP(contour, eps, True)
+        rect = cv2.minAreaRect(contour)
+        box = cv2.boxPoints(rect)
+        box = np.int0(box)
+        height = abs(box[0][1] - box[2][1])
+        width = abs(box[0][0] - box[2][0])
+        ratio = float(width) / float(height)
+        if (ratio &lt; 5 and ratio &gt; 1.8):
+            regions.append(box)
+    return regions
+
+
+def Identify(img):
+    # 灰度化
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    prc = Handling(gray)
+    regions = GetLicense(prc)
+    for box in regions:
+        #将车牌标记
+        cv2.drawContours(img, [box], 0, (0, 255, 0), 2)
+        cv2.imshow(&quot;Result1&quot;,img)
+
+        #仿射变换，将车牌截剪出来
+        pts1 = np.float32([[box[0][0],box[0][1]], [box[1][0],box[1][1]], [box[2][0],box[2][1]],[box[3][0],box[3][1]]])
+        pts2 = np.float32([[200, 120], [0, 120], [0, 0], [200, 0]])
+        M = cv2.getPerspectiveTransform(pts1, pts2)
+        dst = cv2.warpPerspective(img, M, (200, 120))
+        gray1=cv2.cvtColor(dst,cv2.COLOR_BGRA2GRAY)
+
+        #OCR图像识别
+        cv2.imwrite(&quot;./Result2.png&quot;, gray1)
+        pytesseract.pytesseract.tesseract_cmd = 'C://Program Files (x86)/Tesseract-OCR/tesseract.exe'
+        text = pytesseract.image_to_string(Image.open('./Result2.png'))
+        print(text)
+        cv2.imshow(&quot;Result2&quot;, gray1)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+if __name__ == '__main__':
+    # 输入的参数为图片的路径
+    img = cv2.imread('./test.png')
+    Identify(img)
+
+</code></pre>
+
+<p><em>所用图片：</em> <a href="https://github.com/2016Hub/PicGo/tree/master/blog/img/test.png">https://github.com/2016Hub/PicGo/tree/master/blog/img/test.png</a></p>
+
+<p>参考：<a href="https://blog.csdn.net/qq_37385726/article/details/82345122">https://blog.csdn.net/qq_37385726/article/details/82345122</a></p>
+
+<p>讲得非常非常详细~~~</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://imyangshao.github.io/tags/license/">License</a>
+
+  <a class="tag tag--primary tag--small" href="https://imyangshao.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%95%B4%E7%90%86/">学习整理</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://imyangshao.github.io/2019/10/picgogithub%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/" data-tooltip="PicGo,github图床搭建">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Lyang. All Rights Reserved
+  </span>
+  <div>
+  <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+	<script>
+	  var now = new Date();
+	  function createtime() {
+		  var grt= new Date("10/01/2019 12:00:00");
+		  now.setTime(now.getTime()+250);
+		  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+		  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+		  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+		  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+		  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+		  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+		  document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+		  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+	  }
+	setInterval("createtime()",250);
+	</script>
+	</div>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://imyangshao.github.io/2019/10/picgogithub%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/" data-tooltip="PicGo,github图床搭建">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://imyangshao.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">Lyang</h4>
+    
+      <div id="about-card-bio">Just do it!</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Student
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Wuhan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://imyangshao.github.io/images/background.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://imyangshao.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://imyangshao.github.io/js/clicklove.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/imyangshao.github.io\/2019\/10\/%E7%AE%80%E6%98%93%E8%BD%A6%E7%89%8C%E8%AF%86%E5%88%AB\/';
+          
+            this.page.identifier = '\/2019\/10\/%E7%AE%80%E6%98%93%E8%BD%A6%E7%89%8C%E8%AF%86%E5%88%AB\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'Valine';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
