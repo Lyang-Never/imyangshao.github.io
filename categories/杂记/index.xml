@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Welcome To LyBlog!</title>
-    <link>https://imyangshao.github.io/</link>
-    <description>Recent content on Welcome To LyBlog!</description>
+    <title>杂记 on Welcome To LyBlog!</title>
+    <link>https://imyangshao.github.io/categories/%E6%9D%82%E8%AE%B0/</link>
+    <description>Recent content in 杂记 on Welcome To LyBlog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 06 Oct 2019 01:46:22 +0800</lastBuildDate>
     
-	<atom:link href="https://imyangshao.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://imyangshao.github.io/categories/%E6%9D%82%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://imyangshao.github.io/2019/10/picgo/</guid>
       <description>&lt;p&gt;#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Simple_Ipr</title>
-      <link>https://imyangshao.github.io/2019/10/simple_ipr/</link>
-      <pubDate>Fri, 04 Oct 2019 10:46:30 +0800</pubDate>
-      
-      <guid>https://imyangshao.github.io/2019/10/simple_ipr/</guid>
-      <description></description>
     </item>
     
   </channel>
