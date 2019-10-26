@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.58.3 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Lyang">
+<meta name="keywords" content="CNN的典型网络结构">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Architecture_of_CNN">
+<meta name="twitter:title" content="Architecture_of_CNN">
+<meta property="og:url" content="https://imyangshao.github.io/2019/10/architecture_of_cnn/">
+<meta property="twitter:url" content="https://imyangshao.github.io/2019/10/architecture_of_cnn/">
+<meta property="og:site_name" content="Welcome To LyBlog!">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-10-26T15:13:51">
+  
+  
+    <meta property="article:modified_time" content="2019-10-26T15:13:51">
+  
+  
+  
+    
+      <meta property="article:section" content="CV">
+    
+      <meta property="article:section" content="CNN的典型网络结构">
+    
+  
+  
+    
+      <meta property="article:tag" content="CV">
+    
+      <meta property="article:tag" content="Architecture of CNN">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://imyangshao.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://imyangshao.github.io/images/cover.jpg">
+
+
+  <meta property="og:image" content="https://imyangshao.github.io/images/cover.jpg">
+  <meta property="twitter:image" content="https://imyangshao.github.io/images/cover.jpg">
+
+
+
+
+  <meta property="og:image" content="https://imyangshao.github.io/images/touxiang.jpg">
+  <meta property="twitter:image" content="https://imyangshao.github.io/images/touxiang.jpg">
+
+
+    <title>Architecture_of_CNN</title>
+
+    <link rel="icon" href="images/favicon.ico">
+    
+
+    
+
+    <link rel="canonical" href="https://imyangshao.github.io/2019/10/architecture_of_cnn/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://imyangshao.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://imyangshao.github.io/">Welcome To LyBlog!</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://imyangshao.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://imyangshao.github.io/images/touxiang.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://imyangshao.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://imyangshao.github.io/images/touxiang.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">Lyang</h4>
+        
+          <h5 class="sidebar-profile-bio">Just do it!</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://imyangshao.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://imyangshao.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://imyangshao.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://imyangshao.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://imyangshao.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/imyangshao" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://imyangshao.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=233 height=100 src="//music.163.com/outchain/player?type=0&id=3013527850&auto=1&height=90"></iframe>
+  </div>
+
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/cover.jpg')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      Architecture_of_CNN
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-26T15:13:51&#43;08:00">
+        
+  十月 26, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://imyangshao.github.io/categories/cv">CV</a>, 
+    
+      <a class="category-link" href="https://imyangshao.github.io/categories/cnn%e7%9a%84%e5%85%b8%e5%9e%8b%e7%bd%91%e7%bb%9c%e7%bb%93%e6%9e%84">CNN的典型网络结构</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">文章cover图片描述</span>
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#一-lenet">一、LeNet</a></li>
+<li><a href="#二-alexnet">二、AlexNet</a></li>
+<li><a href="#三-vgg">三、VGG</a></li>
+<li><a href="#四-nin">四、NiN</a></li>
+<li><a href="#五-googlenet">五、GoogLeNet</a>
+<ul>
+<li><a href="#https-raw-githubusercontent-com-imyangshao-picgo-master-blog-img-20191026144146-png"><img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026144146.png" alt="" /></a></li>
+</ul></li>
+<li><a href="#六-resnet">六、ResNet</a></li>
+<li><a href="#七-densenet">七、DenseNet</a></li>
+</ul>
+</nav>
+
+<h1 id="前言">前言</h1>
+
+<p>下面将介绍几种卷积神经网络的经典网络:
++ LeNet
++ AlexNet
++ VGG
++ NiN
++ GoogleNet
++ ResNet
++ DenseNet</p>
+
+<h1 id="一-lenet">一、LeNet</h1>
+
+<p>LeNet网络有：卷积层 2个，池化层 2个，全连接层：3个（其中包含输出层）。</p>
+
+<pre><code> 图示如下：
+</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026110405.png" alt="" /></p>
+
+<pre><code>1、
+    net = nn.Sequential()
+    net.add(nn.Conv2D(channels = 6,kernel_size = 5,activation = 'relu'),
+            nn.MaxPool2D(pool_size = 2,strides = 2),
+            nn.Conv2D(channels = 16,kernel_size = 5,activation = 'relu'),
+            nn.MaxPool2D(pool_size = 2,strides = 2),
+            nn.Dense(120,activation = 'sigmoid'),
+            nn.Dense(84,activation = 'sigmoid'),
+            nn.Dense(10))
+
+2、
+    net
+    
+    Sequential(
+      (0): Conv2D(1 -&gt; 6, kernel_size=(5, 5), stride=(1, 1), Activation(relu))
+      (1): MaxPool2D(size=(2, 2), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      (2): Conv2D(6 -&gt; 16, kernel_size=(5, 5), stride=(1, 1), Activation(relu))
+      (3): MaxPool2D(size=(2, 2), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      (4): Dense(256 -&gt; 120, Activation(sigmoid))
+      (5): Dense(120 -&gt; 84, Activation(sigmoid))
+      (6): Dense(84 -&gt; 10, linear)
+    )
+
+3、
+    X= nd.random.uniform(shape=(1,1,28,28))
+    net.initialize()
+    for layer in net:
+        X= layer(X)
+        print(layer.name,'output_shape:',X.shape)
+    
+    
+    conv0 output shape: (1, 6, 24, 24)
+    pool0 output shape: (1, 6, 12, 12)
+    conv1 output shape: (1, 16, 8, 8)
+    pool1 output shape: (1, 16, 4, 4)
+    dense0 output shape: (1, 120)
+    dense1 output shape: (1, 84)
+    dense2 output shape: (1, 10)
+</code></pre>
+
+<h1 id="二-alexnet">二、AlexNet</h1>
+
+<p>AlexNet网络有：卷积层 5个，池化层 3个，全连接层：3个。</p>
+
+<p><img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/1sss.png" alt="" /></p>
+
+<pre><code>1、
+    net_Alex = nn.Sequential()
+    net_Alex.add(nn.Conv2D(96,kernel_size = 11,strides = 4,activation = 'relu'),
+                 nn.MaxPool2D(pool_size = 3,strides = 2),
+                 nn.Conv2D(256,kernel_size = 5,padding = 2,activation = 'relu'),
+                 nn.MaxPool2D(pool_size = 3,strides = 2),
+                 nn.Conv2D(384,kernel_size =3,padding = 1,activation = 'relu' ),
+                 nn.Conv2D(384,kernel_size =3,padding = 1,activation = 'relu' ),
+                 nn.Conv2D(256,kernel_size =3,padding = 1,activation = 'relu' ),
+                 nn.MaxPool2D(pool_size = 3,strides = 2),
+                 nn.Dense(4096,activation = 'relu'),nn.Dropout(0.5),
+                 nn.Dense(4096,activation = 'relu'),nn.Dropout(0.5),
+                 #采用的是Mnist,类别为10
+                 nn.Dense(10)
+                )
+                
+2、
+    net_Alex
+    
+    Sequential(
+      (0): Conv2D(1 -&gt; 96, kernel_size=(11, 11), stride=(4, 4), Activation(relu))
+      (1): MaxPool2D(size=(3, 3), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      (2): Conv2D(96 -&gt; 256, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), Activation(relu))
+      (3): MaxPool2D(size=(3, 3), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      (4): Conv2D(256 -&gt; 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+      (5): Conv2D(384 -&gt; 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+      (6): Conv2D(384 -&gt; 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+      (7): MaxPool2D(size=(3, 3), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      (8): Dense(6400 -&gt; 4096, Activation(relu))
+      (9): Dropout(p = 0.5, axes=())
+      (10): Dense(4096 -&gt; 4096, Activation(relu))
+      (11): Dropout(p = 0.5, axes=())
+      (12): Dense(4096 -&gt; 10, linear)
+    )
+3、
+    X = nd.random.uniform(shape=(1,1,224,224))
+    net_Alex.initialize()
+    for layer_A in net_Alex:
+        X=layer_A(X)
+        print(layer_A.name,'output shape:',X.shape)
+        
+    conv0 output shape: (1, 96, 54, 54)
+    pool0 output shape: (1, 96, 26, 26)
+    conv1 output shape: (1, 256, 26, 26)
+    pool1 output shape: (1, 256, 12, 12)
+    conv2 output shape: (1, 384, 12, 12)
+    conv3 output shape: (1, 384, 12, 12)
+    conv4 output shape: (1, 256, 12, 12)
+    pool2 output shape: (1, 256, 5, 5)
+    dense0 output shape: (1, 4096)
+    dropout0 output shape: (1, 4096)
+    dense1 output shape: (1, 4096)
+    dropout1 output shape: (1, 4096)
+    dense2 output shape: (1, 10)
+</code></pre>
+
+<h1 id="三-vgg">三、VGG</h1>
+
+<p>VGG网络有： 卷积层 13 层，全连接层 3 层，池化层 5 层。</p>
+
+<p>( VGG-16：16 = 13 卷积层 + 3 全连接层，16指的是带参数的层。)</p>
+
+<hr />
+
+<p><img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026115338.png" alt="" /></p>
+
+<hr />
+
+<p><img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026120809.png" alt="" /></p>
+
+<pre><code>1、
+    def vgg_block(num_convs, num_channels):
+        blk = nn.Sequential()
+        for _ in range(num_convs):
+            blk.add(nn.Conv2D(num_channels,kernel_size = 3,activation = 'relu'))
+        blk.add(nn.MaxPool2D(pool_size = 2,strides = 2))
+        return blk
+    
+    def vgg(conv_arch):
+    net = nn.Sequential()
+    for (num_conv,num_channels) in conv_arch:
+        net.add(vgg_block(num_conv,num_channels))
+    net.add(nn.Dense(4096,activation = 'relu'),nn.Dropout(0.5),
+            nn.Dense(4096,activation = 'relu'),nn.Dropout(0.5),
+            nn.Dense(10))
+    return net 
+    
+    conv_arch =  ((1, 64), (1, 128), (2, 256), (2, 512), (2, 512))
+    net_vgg = vgg(conv_arch)
+
+2、
+    net_vgg
+    
+    Sequential(
+      (0): Sequential(
+        (0): Conv2D(1 -&gt; 64, kernel_size=(3, 3), stride=(1, 1), Activation(relu))
+        (1): MaxPool2D(size=(2, 2), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      )
+      (1): Sequential(
+        (0): Conv2D(64 -&gt; 128, kernel_size=(3, 3), stride=(1, 1), Activation(relu))
+        (1): MaxPool2D(size=(2, 2), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      )
+      (2): Sequential(
+        (0): Conv2D(128 -&gt; 256, kernel_size=(3, 3), stride=(1, 1), Activation(relu))
+        (1): Conv2D(256 -&gt; 256, kernel_size=(3, 3), stride=(1, 1), Activation(relu))
+        (2): MaxPool2D(size=(2, 2), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      )
+      (3): Sequential(
+        (0): Conv2D(256 -&gt; 512, kernel_size=(3, 3), stride=(1, 1), Activation(relu))
+        (1): Conv2D(512 -&gt; 512, kernel_size=(3, 3), stride=(1, 1), Activation(relu))
+        (2): MaxPool2D(size=(2, 2), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      )
+      (4): Sequential(
+        (0): Conv2D(512 -&gt; 512, kernel_size=(3, 3), stride=(1, 1), Activation(relu))
+        (1): Conv2D(512 -&gt; 512, kernel_size=(3, 3), stride=(1, 1), Activation(relu))
+        (2): MaxPool2D(size=(2, 2), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      )
+      (5): Dense(4608 -&gt; 4096, Activation(relu))
+      (6): Dropout(p = 0.5, axes=())
+      (7): Dense(4096 -&gt; 4096, Activation(relu))
+      (8): Dropout(p = 0.5, axes=())
+      (9): Dense(4096 -&gt; 10, linear)
+    )
+
+3、
+    net.initialize()
+    X = nd.random.uniform(shape=(1, 1, 224, 224))
+    for blk in net:
+        X = blk(X)
+        print(blk.name, 'output shape:\t', X.shape)
+    
+    sequential1 output shape: (1, 64, 112, 112)
+    sequential2 output shape: (1, 128, 56, 56)
+    sequential3 output shape: (1, 256, 28, 28)
+    sequential4 output shape: (1, 512, 14, 14)
+    sequential5 output shape: (1, 512, 7, 7)
+    dense0 output shape: (1, 4096)
+    dropout0 output shape: (1, 4096)
+    dense1 output shape: (1, 4096)
+    dropout1 output shape: (1, 4096)
+    dense2 output shape: (1, 10)
+
+</code></pre>
+
+<h1 id="四-nin">四、NiN</h1>
+
+<p>NiN: 即Network In Network。下图为其结构：</p>
+
+<p><img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026122021.png" alt="" /></p>
+
+<hr />
+
+<p><img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026122906.png" alt="" /></p>
+
+<p><img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026123019.png" alt="" /></p>
+
+<pre><code>NiN块是NiN中的基础块，由⼀个卷积层加两个充当全连接层的1×1卷积层串联而成(1×1的卷积层可以看成是特殊的全连接层)
+</code></pre>
+
+<pre><code>1、
+    def nin_block(num_channels, kernel_size, strides, padding):
+        blk = nn.Sequential()
+        blk.add(nn.Conv2D(num_channels, kernel_size,strides, padding, activation='relu'),
+            nn.Conv2D(num_channels, kernel_size=1, activation='relu'),
+            nn.Conv2D(num_channels, kernel_size=1, activation='relu'))
+        return blk
+        
+    net_nin = nn.Sequential()
+    net_nin.add(nin_block(96, kernel_size=11, strides=4, padding=0),
+                nn.MaxPool2D(pool_size=3, strides=2),
+                nin_block(256, kernel_size=5, strides=1, padding=2),
+                nn.MaxPool2D(pool_size=3, strides=2),
+                nin_block(384, kernel_size=3, strides=1, padding=1),
+                nn.MaxPool2D(pool_size=3, strides=2), nn.Dropout(0.5),
+                # 标签类别数是10
+                nin_block(10, kernel_size=3, strides=1, padding=1),
+                # 全局平均池化层将窗⼝形状⾃动设置成输⼊的⾼和宽
+                nn.GlobalAvgPool2D(),
+                # 将四维的输出转成⼆维的输出，其形状为(批量⼤⼩, 10)
+                nn.Flatten())
+2、
+    net_nin
+    
+    Sequential(
+      (0): Sequential(
+        (0): Conv2D(None -&gt; 96, kernel_size=(11, 11), stride=(4, 4), Activation(relu))
+        (1): Conv2D(None -&gt; 96, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        (2): Conv2D(None -&gt; 96, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+      )
+      (1): MaxPool2D(size=(3, 3), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      (2): Sequential(
+        (0): Conv2D(None -&gt; 256, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), Activation(relu))
+        (1): Conv2D(None -&gt; 256, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        (2): Conv2D(None -&gt; 256, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+      )
+      (3): MaxPool2D(size=(3, 3), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      (4): Sequential(
+        (0): Conv2D(None -&gt; 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+        (1): Conv2D(None -&gt; 384, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        (2): Conv2D(None -&gt; 384, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+      )
+      (5): MaxPool2D(size=(3, 3), stride=(2, 2), padding=(0, 0), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      (6): Dropout(p = 0.5, axes=())
+      (7): Sequential(
+        (0): Conv2D(None -&gt; 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+        (1): Conv2D(None -&gt; 10, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        (2): Conv2D(None -&gt; 10, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+      )
+      (8): GlobalAvgPool2D(size=(1, 1), stride=(1, 1), padding=(0, 0), ceil_mode=True, global_pool=True, pool_type=avg, layout=NCHW)
+      (9): Flatten
+    )
+    
+3、
+    X = nd.random.uniform(shape=(1, 1, 224, 224))
+    net_nin.initialize()
+    for layer in net_nin:
+        X = layer(X)
+        print(layer.name, 'output shape:\t', X.shape)
+    
+    sequential1 output shape: (1, 96, 54, 54)
+    pool0 output shape: (1, 96, 26, 26)
+    sequential2 output shape: (1, 256, 26, 26)
+    pool1 output shape: (1, 256, 12, 12)
+    sequential3 output shape: (1, 384, 12, 12)
+    pool2 output shape: (1, 384, 5, 5)
+    dropout0 output shape: (1, 384, 5, 5)
+    sequential4 output shape: (1, 10, 5, 5)
+    pool3 output shape: (1, 10, 1, 1)
+
+</code></pre>
+
+<ul>
+<li><p>附：这里有个和前面网络不太一样的地方，就是 Global Average Pooling。</p>
+
+<pre><code>传统的cnn中，最后的卷积层所得feature map被矢量化进行全连接层，然后使用softmax 回归进行分类；
+而global average pooling分类任务有多少个类别,就控制最终产生多少个feature map，对每个feature map的数值求平均作为某类别的置信度,类似FC层输出的特征向量,再经过softmax分类
+</code></pre>
+
+<p>FC与global average pooling的区别如下图:
+<img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026124827.png" alt="" /></p></li>
+</ul>
+
+<h1 id="五-googlenet">五、GoogLeNet</h1>
+
+<p>GoogLeNet 中的基础卷积块叫做 Inception块。如下图：
+<img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026135204.png" alt="" /></p>
+
+<pre><code>可以看出Inception中共有4条并行的线路。
+前3条线路分别使用1×1,3×3,5×5的卷积层来获取不同空间尺寸的信息，
+中间2个先使用1×1的卷积层来减少通道数，以降低模型的复杂度，然后在使用卷积层
+第四条线路则先使用3×3的最大池化层，然后再用1×1的卷积层来改变通道数。
+4条线路都使⽤了合适的填充来使输⼊与输出的⾼和宽⼀致。
+
+具体一些参数见下图：
+</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026140335.png" alt="" /></p>
+
+<pre><code>关于1×1卷积如何降低模型复杂度的计算：
+</code></pre>
+
+<h2 id="https-raw-githubusercontent-com-imyangshao-picgo-master-blog-img-20191026144146-png"><img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026144146.png" alt="" /></h2>
+
+<p><img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026144203.png" alt="" /></p>
+
+<pre><code>1、
+    class Inception(nn.Block):
+        # c1 - c4为每条线路⾥的层的输出通道数
+        def __init__(self, c1, c2, c3, c4, **kwargs):
+            super(Inception, self).__init__(**kwargs)
+            # 线路1，单1 x 1卷积层
+            self.p1_1 = nn.Conv2D(c1, kernel_size=1, activation='relu')
+            # 线路2，1 x 1卷积层后接3 x 3卷积层
+            self.p2_1 = nn.Conv2D(c2[0], kernel_size=1, activation='relu')
+            self.p2_2 = nn.Conv2D(c2[1], kernel_size=3, padding=1,activation='relu')
+            # 线路3，1 x 1卷积层后接5 x 5卷积层
+            self.p3_1 = nn.Conv2D(c3[0], kernel_size=1, activation='relu')
+            self.p3_2 = nn.Conv2D(c3[1], kernel_size=5, padding=2, activation='relu')
+            # 线路4，3 x 3最⼤池化层后接1 x 1卷积层
+            self.p4_1 = nn.MaxPool2D(pool_size=3, strides=1, padding=1)
+            self.p4_2 = nn.Conv2D(c4, kernel_size=1, activation='relu')
+        def forward(self, x):
+            p1 = self.p1_1(x)
+            p2 = self.p2_2(self.p2_1(x))
+            p3 = self.p3_2(self.p3_1(x))
+            p4 = self.p4_2(self.p4_1(x))
+            return nd.concat(p1, p2, p3, p4, dim=1) # 在通道维上连结输出
+            
+    b1 = nn.Sequential()
+    b1.add(nn.Conv2D(64,kernel_size = 7,padding = 3 ,strides = 2,activation = 'relu'),
+           nn.MaxPool2D(pool_size = 3,strides = 2,padding = 1))
+    b2 = nn.Sequential()
+    b2.add(nn.Conv2D(64,kernel_size = 1,activation = 'relu'),
+           nn.Conv2D(192,kernel_size = 3,padding = 1,activation = 'relu'),
+           nn.MaxPool2D(pool_size = 3,strides = 2,padding = 1))
+    b3 = nn.Sequential()
+    b3.add(Inception(64, (96, 128), (16, 32), 32),
+           Inception(128, (128, 192), (32, 96), 64),
+           nn.MaxPool2D(pool_size=3, strides=2, padding=1))
+    b4 = nn.Sequential()
+    b4.add(Inception(192, (96, 208), (16, 48), 64),
+           Inception(160, (112, 224), (24, 64), 64),
+           Inception(128, (128, 256), (24, 64), 64),
+           Inception(112, (144, 288), (32, 64), 64),
+           Inception(256, (160, 320), (32, 128), 128),
+           nn.MaxPool2D(pool_size=3, strides=2, padding=1))
+    b5 = nn.Sequential()
+    b5.add(Inception(256, (160, 320), (32, 128), 128),
+           Inception(384, (192, 384), (48, 128), 128),
+           nn.GlobalAvgPool2D())
+    
+    net_google = nn.Sequential()
+    net_google.add(b1, b2, b3, b4, b5, nn.Dense(10))
+
+2、
+    net_google
+    
+    Sequential(
+      (0): Sequential(
+        (0): Conv2D(None -&gt; 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), Activation(relu))
+        (1): MaxPool2D(size=(3, 3), stride=(2, 2), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      )
+      (1): Sequential(
+        (0): Conv2D(None -&gt; 64, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        (1): Conv2D(None -&gt; 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+        (2): MaxPool2D(size=(3, 3), stride=(2, 2), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      )
+      (2): Sequential(
+        (0): Inception(
+          (p1_1): Conv2D(None -&gt; 64, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_1): Conv2D(None -&gt; 96, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_2): Conv2D(None -&gt; 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+          (p3_1): Conv2D(None -&gt; 16, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p3_2): Conv2D(None -&gt; 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), Activation(relu))
+          (p4_1): MaxPool2D(size=(3, 3), stride=(1, 1), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+          (p4_2): Conv2D(None -&gt; 32, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        )
+        (1): Inception(
+          (p1_1): Conv2D(None -&gt; 128, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_1): Conv2D(None -&gt; 128, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_2): Conv2D(None -&gt; 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+          (p3_1): Conv2D(None -&gt; 32, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p3_2): Conv2D(None -&gt; 96, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), Activation(relu))
+          (p4_1): MaxPool2D(size=(3, 3), stride=(1, 1), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+          (p4_2): Conv2D(None -&gt; 64, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        )
+        (2): MaxPool2D(size=(3, 3), stride=(2, 2), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      )
+      (3): Sequential(
+        (0): Inception(
+          (p1_1): Conv2D(None -&gt; 192, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_1): Conv2D(None -&gt; 96, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_2): Conv2D(None -&gt; 208, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+          (p3_1): Conv2D(None -&gt; 16, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p3_2): Conv2D(None -&gt; 48, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), Activation(relu))
+          (p4_1): MaxPool2D(size=(3, 3), stride=(1, 1), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+          (p4_2): Conv2D(None -&gt; 64, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        )
+        (1): Inception(
+          (p1_1): Conv2D(None -&gt; 160, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_1): Conv2D(None -&gt; 112, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_2): Conv2D(None -&gt; 224, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+          (p3_1): Conv2D(None -&gt; 24, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p3_2): Conv2D(None -&gt; 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), Activation(relu))
+          (p4_1): MaxPool2D(size=(3, 3), stride=(1, 1), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+          (p4_2): Conv2D(None -&gt; 64, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        )
+        (2): Inception(
+          (p1_1): Conv2D(None -&gt; 128, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_1): Conv2D(None -&gt; 128, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_2): Conv2D(None -&gt; 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+          (p3_1): Conv2D(None -&gt; 24, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p3_2): Conv2D(None -&gt; 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), Activation(relu))
+          (p4_1): MaxPool2D(size=(3, 3), stride=(1, 1), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+          (p4_2): Conv2D(None -&gt; 64, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        )
+        (3): Inception(
+          (p1_1): Conv2D(None -&gt; 112, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_1): Conv2D(None -&gt; 144, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_2): Conv2D(None -&gt; 288, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+          (p3_1): Conv2D(None -&gt; 32, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p3_2): Conv2D(None -&gt; 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), Activation(relu))
+          (p4_1): MaxPool2D(size=(3, 3), stride=(1, 1), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+          (p4_2): Conv2D(None -&gt; 64, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        )
+        (4): Inception(
+          (p1_1): Conv2D(None -&gt; 256, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_1): Conv2D(None -&gt; 160, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_2): Conv2D(None -&gt; 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+          (p3_1): Conv2D(None -&gt; 32, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p3_2): Conv2D(None -&gt; 128, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), Activation(relu))
+          (p4_1): MaxPool2D(size=(3, 3), stride=(1, 1), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+          (p4_2): Conv2D(None -&gt; 128, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        )
+        (5): MaxPool2D(size=(3, 3), stride=(2, 2), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+      )
+      (4): Sequential(
+        (0): Inception(
+          (p1_1): Conv2D(None -&gt; 256, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_1): Conv2D(None -&gt; 160, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_2): Conv2D(None -&gt; 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+          (p3_1): Conv2D(None -&gt; 32, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p3_2): Conv2D(None -&gt; 128, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), Activation(relu))
+          (p4_1): MaxPool2D(size=(3, 3), stride=(1, 1), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+          (p4_2): Conv2D(None -&gt; 128, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        )
+        (1): Inception(
+          (p1_1): Conv2D(None -&gt; 384, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_1): Conv2D(None -&gt; 192, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p2_2): Conv2D(None -&gt; 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), Activation(relu))
+          (p3_1): Conv2D(None -&gt; 48, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+          (p3_2): Conv2D(None -&gt; 128, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), Activation(relu))
+          (p4_1): MaxPool2D(size=(3, 3), stride=(1, 1), padding=(1, 1), ceil_mode=False, global_pool=False, pool_type=max, layout=NCHW)
+          (p4_2): Conv2D(None -&gt; 128, kernel_size=(1, 1), stride=(1, 1), Activation(relu))
+        )
+        (2): GlobalAvgPool2D(size=(1, 1), stride=(1, 1), padding=(0, 0), ceil_mode=True, global_pool=True, pool_type=avg, layout=NCHW)
+      )
+      (5): Dense(None -&gt; 10, linear)
+    )
+3、
+    X = nd.random.uniform(shape=(1, 1, 96, 96))
+    net_google.initialize()
+    for layer in net_google:
+        X = layer(X)
+        print(layer.name, 'output shape:\t', X.shape)
+        
+    sequential0 output shape:   (1, 64, 24, 24)
+    sequential1 output shape:   (1, 192, 12, 12)
+    sequential2 output shape:   (1, 480, 6, 6)
+    sequential3 output shape:   (1, 832, 3, 3)
+    sequential4 output shape:   (1, 1024, 1, 1)
+    dense0 output shape:     (1, 10)
+</code></pre>
+
+<h1 id="六-resnet">六、ResNet</h1>
+
+<p>ResNet不同层数时的网络配置：
+<img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/VUD.png" alt="" /></p>
+
+<h1 id="七-densenet">七、DenseNet</h1>
+
+<pre><code>后期完善。
+</code></pre>
+
+<p>参考：</p>
+
+<ul>
+<li><a href="https://note.youdao.com/">  https://www.cnblogs.com/makefile/p/nin.html</a></li>
+<li><a href="https://note.youdao.com/"> https://cloud.tencent.com/developer/article/1118670</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://imyangshao.github.io/tags/cv/">CV</a>
+
+  <a class="tag tag--primary tag--small" href="https://imyangshao.github.io/tags/architecture-of-cnn/">Architecture of CNN</a>
+
+                  </div>
+                
+              
+            
+              <span id="/2019/10/architecture_of_cnn/" class="leancloud_visitors" data-flag-title="Architecture_of_CNN">
+                <span class="post-meta-item-text">文章阅读量 </span>
+                <span class="leancloud-visitors-count">1000000</span>
+                <p></p>
+              </span>
+              <div id="vcomments"></div>
+              <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+              <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+              <script type="text/javascript">
+                new Valine({
+                  el: '#vcomments' ,
+                  appId: 'x0H7UY2Ngzov82YSvXk1Q0K8-gzGzoHsz',
+                  appKey: 'rj7i5PD1DdXaECLOa59qsRuw',
+                  notify: 'false',
+                  verify: '',
+                  avatar:'monsterid', 
+                  placeholder: '说点什么吧...',
+                  visitor: 'true'
+                });
+              </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://imyangshao.github.io/2019/10/picgogithub%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/" data-tooltip="PicGo,github图床搭建">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Lyang. All Rights Reserved
+  </span>
+  <div>
+  <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+	<script>
+	  var now = new Date();
+	  function createtime() {
+		  var grt= new Date("10/01/2019 12:00:00");
+		  now.setTime(now.getTime()+250);
+		  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+		  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+		  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+		  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+		  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+		  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+		  document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+		  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+	  }
+	setInterval("createtime()",250);
+	</script>
+	</div>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://imyangshao.github.io/2019/10/picgogithub%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/" data-tooltip="PicGo,github图床搭建">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://imyangshao.github.io/images/touxiang.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">Lyang</h4>
+    
+      <div id="about-card-bio">Just do it!</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Student
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Wuhan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://imyangshao.github.io/images/background.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://imyangshao.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://imyangshao.github.io/js/clicklove.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/imyangshao.github.io\/2019\/10\/architecture_of_cnn\/';
+          
+            this.page.identifier = '\/2019\/10\/architecture_of_cnn\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'Valine';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -3,8 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://imyangshao.github.io/tags/architecture-of-cnn/</loc>
+    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/2019/10/architecture_of_cnn/</loc>
+    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://imyangshao.github.io/categories/</loc>
-    <lastmod>2019-10-06T01:46:22+08:00</lastmod>
+    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/categories/cnn%E7%9A%84%E5%85%B8%E5%9E%8B%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/tags/cv/</loc>
+    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/categories/cv/</loc>
+    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/post/</loc>
+    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/tags/</loc>
+    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/</loc>
+    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
   </url>
   
   <url>
@@ -28,21 +68,6 @@
   </url>
   
   <url>
-    <loc>https://imyangshao.github.io/post/</loc>
-    <lastmod>2019-10-06T01:46:22+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://imyangshao.github.io/tags/</loc>
-    <lastmod>2019-10-06T01:46:22+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://imyangshao.github.io/</loc>
-    <lastmod>2019-10-06T01:46:22+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://imyangshao.github.io/categories/%E6%9D%82%E8%AE%B0/</loc>
     <lastmod>2019-10-06T01:46:22+08:00</lastmod>
   </url>
@@ -53,12 +78,12 @@
   </url>
   
   <url>
-    <loc>https://imyangshao.github.io/categories/%E5%AD%A6%E4%B9%A0%E6%95%B4%E7%90%86/</loc>
+    <loc>https://imyangshao.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%95%B4%E7%90%86/</loc>
     <lastmod>2019-10-04T10:46:30+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://imyangshao.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%95%B4%E7%90%86/</loc>
+    <loc>https://imyangshao.github.io/categories/%E5%AD%A6%E4%B9%A0%E6%95%B4%E7%90%86/</loc>
     <lastmod>2019-10-04T10:46:30+08:00</lastmod>
   </url>
   

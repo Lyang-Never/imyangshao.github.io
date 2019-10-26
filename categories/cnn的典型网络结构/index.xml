@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CNN的典型网络结构 on Welcome To LyBlog!</title>
+    <link>https://imyangshao.github.io/categories/cnn%E7%9A%84%E5%85%B8%E5%9E%8B%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/</link>
+    <description>Recent content in CNN的典型网络结构 on Welcome To LyBlog!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 26 Oct 2019 15:13:51 +0800</lastBuildDate>
+    
+	<atom:link href="https://imyangshao.github.io/categories/cnn%E7%9A%84%E5%85%B8%E5%9E%8B%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Architecture_of_CNN</title>
+      <link>https://imyangshao.github.io/2019/10/architecture_of_cnn/</link>
+      <pubDate>Sat, 26 Oct 2019 15:13:51 +0800</pubDate>
+      
+      <guid>https://imyangshao.github.io/2019/10/architecture_of_cnn/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

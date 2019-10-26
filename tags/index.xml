@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Welcome To LyBlog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Oct 2019 01:46:22 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Oct 2019 15:13:51 +0800</lastBuildDate>
     
 	<atom:link href="https://imyangshao.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Architecture of CNN</title>
+      <link>https://imyangshao.github.io/tags/architecture-of-cnn/</link>
+      <pubDate>Sat, 26 Oct 2019 15:13:51 +0800</pubDate>
+      
+      <guid>https://imyangshao.github.io/tags/architecture-of-cnn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CV</title>
+      <link>https://imyangshao.github.io/tags/cv/</link>
+      <pubDate>Sat, 26 Oct 2019 15:13:51 +0800</pubDate>
+      
+      <guid>https://imyangshao.github.io/tags/cv/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>github图床</title>
