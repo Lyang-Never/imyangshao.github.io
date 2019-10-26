@@ -53,8 +53,8 @@
 
 
 
-  <meta property="og:image" content="https://imyangshao.github.io/images/cover.jpg">
-  <meta property="twitter:image" content="https://imyangshao.github.io/images/cover.jpg">
+  <meta property="og:image" content="https://imyangshao.github.io/images/p750.jpg">
+  <meta property="twitter:image" content="https://imyangshao.github.io/images/p750.jpg">
 
 
   <meta property="og:image" content="https://imyangshao.github.io/images/cover.jpg">
@@ -579,16 +579,17 @@
 
 </code></pre>
 
-<ul>
-<li><p>附：这里有个和前面网络不太一样的地方，就是 Global Average Pooling。</p>
+<pre><code>附：这里有个和前面网络不太一样的地方，就是 Global Average Pooling。
+</code></pre>
 
 <pre><code>传统的cnn中，最后的卷积层所得feature map被矢量化进行全连接层，然后使用softmax 回归进行分类；
 而global average pooling分类任务有多少个类别,就控制最终产生多少个feature map，对每个feature map的数值求平均作为某类别的置信度,类似FC层输出的特征向量,再经过softmax分类
 </code></pre>
 
-<p>FC与global average pooling的区别如下图:
-<img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026124827.png" alt="" /></p></li>
-</ul>
+<pre><code> FC与global average pooling的区别如下图:
+</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/imyangshao/PicGo/master/blog/img/20191026124827.png" alt="" /></p>
 
 <h1 id="五-googlenet">五、GoogLeNet</h1>
 
