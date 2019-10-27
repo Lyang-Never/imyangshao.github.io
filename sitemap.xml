@@ -3,8 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://imyangshao.github.io/tags/architecture-of-cnn/</loc>
-    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
+    <loc>https://imyangshao.github.io/categories/</loc>
+    <lastmod>2019-10-27T10:27:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/categories/cnn/</loc>
+    <lastmod>2019-10-27T10:27:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/tags/cnn/</loc>
+    <lastmod>2019-10-27T10:27:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/2019/10/cnn/</loc>
+    <lastmod>2019-10-27T10:27:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/tags/cv/</loc>
+    <lastmod>2019-10-27T10:27:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/categories/cv/</loc>
+    <lastmod>2019-10-27T10:27:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/post/</loc>
+    <lastmod>2019-10-27T10:27:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/tags/</loc>
+    <lastmod>2019-10-27T10:27:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://imyangshao.github.io/</loc>
+    <lastmod>2019-10-27T10:27:17+08:00</lastmod>
   </url>
   
   <url>
@@ -13,37 +53,12 @@
   </url>
   
   <url>
-    <loc>https://imyangshao.github.io/categories/</loc>
+    <loc>https://imyangshao.github.io/categories/mxnet/</loc>
     <lastmod>2019-10-26T15:13:51+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://imyangshao.github.io/categories/cnn%E7%9A%84%E5%85%B8%E5%9E%8B%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://imyangshao.github.io/tags/cv/</loc>
-    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://imyangshao.github.io/categories/cv/</loc>
-    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://imyangshao.github.io/post/</loc>
-    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://imyangshao.github.io/tags/</loc>
-    <lastmod>2019-10-26T15:13:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://imyangshao.github.io/</loc>
+    <loc>https://imyangshao.github.io/tags/mxnet/</loc>
     <lastmod>2019-10-26T15:13:51+08:00</lastmod>
   </url>
   
