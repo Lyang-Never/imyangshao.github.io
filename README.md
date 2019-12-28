@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Welcome!
 =======
 # imyangshao.github.io
